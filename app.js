@@ -4,7 +4,7 @@ require('express-async-errors')
 // express
 const express = require('express')
 const app = express()
-
+const logger = require('./utils/logger')
 // packages
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
@@ -51,7 +51,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URL)
     app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
+      logger.info(`Server is listening on port ${port}...`)
     )
   } catch (error) {
     throw new Error(error)

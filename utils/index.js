@@ -9,5 +9,5 @@ module.exports = {
   attachCookiesToResponse,
   createTokenUser,
   checkPermissions,
-  logger
+  logger,
 }
