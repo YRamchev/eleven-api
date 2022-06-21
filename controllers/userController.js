@@ -1,7 +1,11 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-const { createTokenUser, attachCookiesToResponse, checkPermissions } = require('../utils')
+const {
+  createTokenUser,
+  attachCookiesToResponse,
+  checkPermissions,
+} = require('../utils')
 
 const getAllUsers = async (req, res) => {
   const users = await User.find({ role: 'user' }, ['_id', 'name', 'email'])
@@ -10,7 +14,6 @@ const getAllUsers = async (req, res) => {
 }
 
 const getSingleUser = async (req, res) => {
-
   const { id } = req.params
   const user = await User.findOne({ _id: id }, ['_id', 'name', 'email'])
 
@@ -31,10 +34,16 @@ const updateUser = async (req, res) => {
   const { email, name } = res.body
 
   if (!email || !name) {
-    throw new CustomError.BadRequestError("Please provide email and name values!")
+    throw new CustomError.BadRequestError(
+      'Please provide email and name values!'
+    )
   }
 
-  const user = await User.findOneAndUpdate({ _id: req.user.userId }, { email, name }, { new: true, runValidators: true })
+  const user = await User.findOneAndUpdate(
+    { _id: req.user.userId },
+    { email, name },
+    { new: true, runValidators: true }
+  )
   const tokenUser = createTokenUser(user)
   attachCookiesToResponse({ res, user: tokenUser })
   res.status(StatusCodes.OK).json({ user: tokenUser })
@@ -44,7 +53,9 @@ const updateUserPassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body
 
   if (!oldPassword || !newPassword) {
-    throw new CustomError.BadRequestError('Please provide oldPassword and newPassword!')
+    throw new CustomError.BadRequestError(
+      'Please provide oldPassword and newPassword!'
+    )
   }
 
   const user = await User.findOne({ _id: req.user.userId })
@@ -61,4 +72,10 @@ const updateUserPassword = async (req, res) => {
   res.status(StatusCodes.OK).json({})
 }
 
-module.exports = { getAllUsers, getSingleUser, showCurrentUser, updateUser, updateUserPassword }
+module.exports = {
+  getAllUsers,
+  getSingleUser,
+  showCurrentUser,
+  updateUser,
+  updateUserPassword,
+}

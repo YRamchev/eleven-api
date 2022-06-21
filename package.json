@@ -1,10 +1,15 @@
 {
-  "name": "06-jobs-api",
+  "name": "eleven-api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -28,9 +33,16 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.0",
+    "nodemon": "^2.0.9",
+    "prettier": "^2.7.1"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
+  },
+  "prepare": {
+    "prepare": "husky install"
   }
 }
