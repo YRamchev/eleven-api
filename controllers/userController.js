@@ -20,7 +20,7 @@ const getSingleUser = async (req, res) => {
 }
 
 const showCurrentUser = async (req, res) => {
-  res.send('Show current users')
+  res.status(StatusCodes.OK).json({ user: req.user })
 }
 
 const updateUser = async (req, res) => {
@@ -28,7 +28,24 @@ const updateUser = async (req, res) => {
 }
 
 const updateUserPassword = async (req, res) => {
-  res.send('update user password')
+  const { oldPassword, newPassword } = req.body
+
+  if (!oldPassword || !newPassword) {
+    throw new CustomError.BadRequestError('Please provide oldPassword and newPassword!')
+  }
+
+  const user = await User.findOne({ _id: req.user.userId })
+
+  const isPasswordCorrect = await user.comparePassword(oldPassword)
+
+  if (!isPasswordCorrect) {
+    throw new CustomError.UnauthenticatedError('Invalid credentials!')
+  }
+
+  user.password = newPassword
+
+  await user.save()
+  res.status(StatusCodes.OK).json({})
 }
 
 module.exports = { getAllUsers, getSingleUser, showCurrentUser, updateUser, updateUserPassword }
