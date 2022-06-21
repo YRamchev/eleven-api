@@ -8,7 +8,7 @@ configure({
       filename: `${process.env.LOG_DIR}/${process.env.LOG_FILE}`,
       layout: { type: 'basic' },
       compress: true,
-      daysToKeep: 14,
+      numBackups: 1,
       keepFileExt: true,
     },
   },
