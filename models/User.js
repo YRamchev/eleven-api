@@ -32,9 +32,9 @@ const UserSchema = new mongoose.Schema({
   },
   isVerified: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  verified: Date
+  verified: Date,
 })
 
 UserSchema.pre('save', async function () {

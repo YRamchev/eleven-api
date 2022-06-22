@@ -14,7 +14,10 @@ const register = async (req, res) => {
   const verificationToken = 'fakeToken'
   const user = await User.create({ name, email, password, verificationToken })
 
-  res.status(StatusCodes.CREATED).json({ msg: 'Success! Please check your email to verify account', verificationToken: user.verificationToken })
+  res.status(StatusCodes.CREATED).json({
+    msg: 'Success! Please check your email to verify account',
+    verificationToken: user.verificationToken,
+  })
 
   // const tokenUser = createTokenUser(user)
   // attachCookiesToResponse({ res, user: tokenUser })
@@ -42,7 +45,9 @@ const login = async (req, res) => {
   }
 
   if (!user.isVerified) {
-    throw new CustomError.UnauthenticatedError('Please verify your email address!')
+    throw new CustomError.UnauthenticatedError(
+      'Please verify your email address!'
+    )
   }
 
   const tokenUser = createTokenUser(user)
