@@ -54,7 +54,7 @@ const start = async () => {
       logger.info(`Server is listening on port ${port}...`)
     )
   } catch (error) {
-    throw new Error(error)
+    logger.error(error)
   }
 }
 
