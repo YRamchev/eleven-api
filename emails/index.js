@@ -1,4 +1,3 @@
-const sendUserVerificationEmail = require("./userVerification");
-
+const sendUserVerificationEmail = require('./userVerification')
 
 module.exports = { sendUserVerificationEmail }

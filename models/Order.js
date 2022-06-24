@@ -1,7 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
-const OrderSchema = mongoose.Schema({
+const OrderSchema = mongoose.Schema({})
 
-})
-
-module.exports = mongoose.model("Order", OrderSchema)
+module.exports = mongoose.model('Order', OrderSchema)

@@ -17,7 +17,12 @@ const register = async (req, res) => {
   const verificationToken = crypto.randomBytes(40).toString('hex')
   const user = await User.create({ name, email, password, verificationToken })
 
-  await sendUserVerificationEmail({ name: user.name, email: user.email, verificationToken: user.verificationToken, origin: 'http://localhost:3000' });
+  await sendUserVerificationEmail({
+    name: user.name,
+    email: user.email,
+    verificationToken: user.verificationToken,
+    origin: 'http://localhost:3000',
+  })
 
   res.status(StatusCodes.CREATED).json({
     msg: 'Success! Please check your email to verify account',
@@ -55,7 +60,7 @@ const login = async (req, res) => {
   const tokenUser = createTokenUser(user)
 
   // create refresh token
-  let refreshToken = ""
+  let refreshToken = ''
   // check for existing token
   const existingToken = await Token.findOne({ user: user._id })
 
@@ -69,7 +74,7 @@ const login = async (req, res) => {
     refreshToken = existingToken.refreshToken
     attachCookiesToResponse({ res, user: tokenUser, refreshToken })
     res.status(StatusCodes.OK).json({ user: tokenUser })
-    return;
+    return
   }
 
   refreshToken = crypto.randomBytes(40).toString('hex')
@@ -101,7 +106,9 @@ const verifyEmail = async (req, res) => {
 
   await user.save()
 
-  res.status(StatusCodes.OK).json({ msg: `User with ${email} is verification successful.` })
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: `User with ${email} is verification successful.` })
 }
 
 const logout = async (req, res) => {

@@ -4,7 +4,7 @@ const {
   register,
   login,
   logout,
-  verifyEmail
+  verifyEmail,
 } = require('../controllers/authController')
 
 router.post('/register', register)

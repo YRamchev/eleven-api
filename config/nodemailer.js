@@ -3,6 +3,6 @@ module.exports = {
   port: 587,
   auth: {
     user: process.env.ETHEREAL_USER,
-    pass: process.env.ETHEREAL_PASSWORD
-  }
+    pass: process.env.ETHEREAL_PASSWORD,
+  },
 }
