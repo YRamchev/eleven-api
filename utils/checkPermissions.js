@@ -5,7 +5,7 @@ const checkPermissions = (requestUser, resouceUserId) => {
 
   if (requestUser.userId === resouceUserId.toString()) return
 
-  throw new CustomError.UnauthorizedError('Not autorized to access this route!')
+  throw new CustomError.UnauthorizedError('Not authorized to access this route!')
 }
 
 module.exports = checkPermissions

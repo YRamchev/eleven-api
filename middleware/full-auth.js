@@ -5,6 +5,7 @@ const authenticateUser = async (req, res, next) => {
   let token
   // check header
   const authHeader = req.headers.authorization
+
   if (authHeader && authHeader.startsWith('Bearer')) {
     token = authHeader.split(' ')[1]
   }
