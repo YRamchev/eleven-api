@@ -9,27 +9,30 @@ const mongoose = require('mongoose')
 // price - number
 // originaPrice - number
 // shape [enum]
-// gender [enum] 
+// gender [enum]
 // weight String
 
-const ProductSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Please provide a product name']
+const ProductSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Please provide a product name'],
+    },
+    size: {
+      type: String,
+      required: [true, 'Please provide a product size'],
+    },
+    weight: {
+      type: String,
+      required: [true, 'Please provide a product weight'],
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female', 'both'],
+      default: 'both',
+    },
   },
-  size: {
-    type: String,
-    required: [true, 'Please provide a product size']
-  },
-  weight: {
-    type: String,
-    required: [true, 'Please provide a product weight']
-  },
-  gender: {
-    type: String,
-    enum: ['male', 'female', 'both'],
-    default: 'both'
-  }
-}, { timestamps: true })
+  { timestamps: true }
+)
 
 module.exports = mongoose.model('Product', ProductSchema)

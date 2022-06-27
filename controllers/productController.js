@@ -22,7 +22,7 @@ const createProduct = async (req, res) => {
   const { name, size, weight } = req.body
 
   if (!name || !size || weight) {
-    throw new CustomError.BadRequestError("Please provide values!")
+    throw new CustomError.BadRequestError('Please provide values!')
   }
 
   const product = await Product.create({ name, size, weight })
@@ -59,7 +59,14 @@ const deleteProduct = async (req, res) => {
 }
 
 const uploadImage = (req, res) => {
-  res.send("delete product")
+  res.send('delete product')
 }
 
-module.exports = { getAllProducts, getSingleProduct, createProduct, updateProduct, deleteProduct, uploadImage }
+module.exports = {
+  getAllProducts,
+  getSingleProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  uploadImage,
+}

@@ -11,5 +11,5 @@ module.exports = {
   createTokenUser,
   checkPermissions,
   logger,
-  createHash
+  createHash,
 }

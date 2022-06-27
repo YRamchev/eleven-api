@@ -6,11 +6,9 @@ const {
   logout,
   verifyEmail,
   forgotPassword,
-  resetPassword
+  resetPassword,
 } = require('../controllers/authController')
-const {
-  authenticateUser
-} = require('../middleware/authentication')
+const { authenticateUser } = require('../middleware/authentication')
 
 router.post('/register', register)
 router.post('/login', login)
