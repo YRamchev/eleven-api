@@ -2,7 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # prettier
-npm run format:write && npm run format:check
+# npm run format:write && npm run format:check
 
 # eslint
-npm run lint:fix && npm run lint:check
+# npm run lint:fix && npm run lint:check
